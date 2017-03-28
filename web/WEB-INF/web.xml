@@ -18,6 +18,16 @@
         <url-pattern>/test</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>SearchMedia</servlet-name>
+        <servlet-class>SearchMedia</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SearchMedia</servlet-name>
+        <url-pattern>/search_media</url-pattern>
+    </servlet-mapping>
+
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>

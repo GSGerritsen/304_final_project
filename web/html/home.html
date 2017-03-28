@@ -1,54 +1,69 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <script src="https://use.fontawesome.com/2574aa6893.js"></script>
     <title>Home</title>
 </head>
 <body>
-<nav id="navbar-target" class="navbar" role="navigation">
-    <div class="navbar navbar-wrap">
-        <div class="logo">
-            <a class="logo-text" href="/">304 Project</a>
+<div id="lists">
+    <nav id="navbar-target" class="navbar" role="navigation">
+        <div class="navbar navbar-wrap">
+            <div class="logo">
+                <a class="logo-text" href="/">304 Project</a>
+            </div>
+            <div class="buttons-container">
+                <a class="button button-login">View Later</a>
+                <a class="button button-signup">History</a>
+                <a class="github-icon" target="_blank" href="https://github.com/GSGerritsen/"> <i class="fa fa-github 4x" aria-hidden="true"></i></a>
+            </div>
         </div>
-        <div class="buttons-container">
-            <a class="button button-login">Login</a>
-            <a class="button button-signup">Sign up</a>
-            <a class="github-icon" target="_blank" href="https://github.com/GSGerritsen/"> <i class="fa fa-github 4x" aria-hidden="true"></i></a>
+    </nav>
+    <div class="lists-container">
+        <div class="list-container">
+            <div class="search-header">
+                <i class="fa fa-search" class="search-icon" aria-hidden="true"></i>
+                <input type="text" v-model="search" class="search-input">
+            </div>
+            <div class="filter-header">
+                Filter media categories
+            </div>
+            <div class="filter-options">
+                <input type="checkbox" v-model="book">Books<br>
+                <input type="checkbox" v-model="comic">Comics<br>
+                <input type="checkbox" v-model="movie">Movies<br>
+                <input type="checkbox" v-model="tv">TV Shows<br>
+            </div>
+            <div class="filter-header">
+                Filter results (optional)
+            </div>
+            <div class="filter-options">
+                <input type="checkbox" v-model="creator">Creator<br>
+                <input type="checkbox" v-model="mediaTitle">Media title<br>
+            </div>
+            <div class="filter-header">
+                Sort by
+            </div>
+            <div class="filter-options">
+                <input type="checkbox" v-model="max">Max rating<br>
+                <input type="checkbox" v-model="min">Min rating<br>
+                <input type="checkbox" v-model="avgMax">Max average rating<br>
+                <input type="checkbox" v-model="avgMin">Min average rating<br>
+            </div>
+            <div class="button-search" @click="submitForm">
+                Search
+            </div>
         </div>
-    </div>
-</nav>
-<div class="lists-container">
-    <div class="list-container">
-        <div class="search-header">
-           <input type="text" class="search-input">
-        </div>
-        <div class="filter-header">
-            Filter media categories
-        </div>
-        <div class="filter-options">
-            <input type="checkbox" name="book">Books<br>
-            <input type="checkbox" name="comic">Comics<br>
-            <input type="checkbox" name="movie">Movies<br>
-            <input type="checkbox" name="tv">TV Shows<br>
-        </div>
-        <div class="filter-header">
-            Filter results
-        </div>
-        <div class="filter-options">
-            <input type="checkbox" name="creator">Creator<br>
-            <input type="checkbox" name="mediaTitle">Media title<br>
-            <input type="checkbox" name="all" checked>All<br>
-        </div>
-        <div class="filter-header">
-            Sort by
-        </div>
-        <div class="filter-options">
-            <input type="checkbox" name="max">Max rating<br>
-            <input type="checkbox" name="min">Min rating<br>
 
+        <div class="results-container">
+            <div class="results-header">
+                Results
+            </div>
         </div>
+
     </div>
 </div>
-
 </body>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script type="text/javascript" src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
+<script type="text/javascript" src="/js/home.js"></script>
+<script src="https://use.fontawesome.com/2574aa6893.js"></script>
 </html>
