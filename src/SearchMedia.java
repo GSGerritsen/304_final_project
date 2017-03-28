@@ -80,16 +80,63 @@ public class SearchMedia extends HttpServlet {
                         creator = Boolean.parseBoolean(creatorPatternMatch.group(1));
                         mediaTitle = Boolean.parseBoolean(mediaTitlePatternMatch.group(1));
                         if (creator) {
-                            // TODO: write findAllCategoriesByCreatorWithKeyword in the MediaStatements class
-                            //resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search);
+                            if (maxPatternMatch.find() && minPatternMatch.find() && avgMaxPatternMatch.find() && avgMinPatternMatch.find()) {
+                                max = Boolean.parseBoolean(maxPatternMatch.group(1));
+                                min = Boolean.parseBoolean(minPatternMatch.group(1));
+                                avgMax = Boolean.parseBoolean(avgMaxPatternMatch.group(1));
+                                avgMin = Boolean.parseBoolean(avgMinPatternMatch.group(1));
+
+                                if (max) {
+                                    // TODO: write findAllCategoriesByCreatorWithKeyword in the MediaStatements class
+                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "max");
+                                }
+                                if (min) {
+                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "min");
+                                }
+                                if (avgMax) {
+                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "avgMax");
+                                }
+                                if (avgMin) {
+                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "avgMin");
+                                }
+
+                                else {
+                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "none");
+                                }
+
+                            }
+
                         }
                         if (mediaTitle) {
-                            // TODO: write findAllCategoriesByTitleWithKeyword in the MediaStatements class
-                            //resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search);
+                            if (maxPatternMatch.find() && minPatternMatch.find() && avgMaxPatternMatch.find() && avgMinPatternMatch.find()) {
+                                max = Boolean.parseBoolean(maxPatternMatch.group(1));
+                                min = Boolean.parseBoolean(minPatternMatch.group(1));
+                                avgMax = Boolean.parseBoolean(avgMaxPatternMatch.group(1));
+                                avgMin = Boolean.parseBoolean(avgMinPatternMatch.group(1));
+
+                                if (max) {
+                                    // TODO: write findAllCategoriesByCreatorWithKeyword in the MediaStatements class
+                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "max");
+                                }
+                                if (min) {
+                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "min");
+                                }
+                                if (avgMax) {
+                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "avgMax");
+                                }
+                                if (avgMin) {
+                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "avgMin");
+                                }
+
+                                else {
+                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "none");
+                                }
+
+                            }
                         }
                         else {
                             // TODO: write findAllCategoriesWithKeyword in the MediaStatements class
-                            //resultsList = mediaStatements.findAllCategoriesWithKeyword(search);
+                            // resultsList = mediaStatements.findAllCategoriesWithKeyword(search);
                         }
                     }
 
