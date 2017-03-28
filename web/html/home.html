@@ -1,6 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <script src="https://use.fontawesome.com/2574aa6893.js"></script>
     <title>Home</title>
 </head>
 <body>
@@ -18,10 +19,36 @@
 </nav>
 <div class="lists-container">
     <div class="list-container">
-        <div class="list-header">
-            View Later
+        <div class="search-header">
+           <input type="text" class="search-input">
+        </div>
+        <div class="filter-header">
+            Filter media categories
+        </div>
+        <div class="filter-options">
+            <input type="checkbox" name="book">Books<br>
+            <input type="checkbox" name="comic">Comics<br>
+            <input type="checkbox" name="movie">Movies<br>
+            <input type="checkbox" name="tv">TV Shows<br>
+        </div>
+        <div class="filter-header">
+            Filter results
+        </div>
+        <div class="filter-options">
+            <input type="checkbox" name="creator">Creator<br>
+            <input type="checkbox" name="mediaTitle">Media title<br>
+            <input type="checkbox" name="all" checked>All<br>
+        </div>
+        <div class="filter-header">
+            Sort by
+        </div>
+        <div class="filter-options">
+            <input type="checkbox" name="max">Max rating<br>
+            <input type="checkbox" name="min">Min rating<br>
+
         </div>
     </div>
 </div>
+
 </body>
 </html>
