@@ -1,0 +1,189 @@
+html {
+    font-family: 'geogrotesque', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+body {
+    position: relative;
+    /*z-index: 0; ?? */
+    color: #333333;
+    margin: 0 auto;
+    background-color: #F4F7FA;
+    height: 100%;
+    /* so that setting width:100% on divs will make it actually take 100% */
+    min-width: 100%;
+}
+
+.navbar {
+    position: relative;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    padding: 0rem;
+    box-sizing: border-box;
+    z-index: 5;
+}
+
+.navbar .navbar-wrap {
+    background: #FFFFFF;
+    width: 100%;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    padding: 27px 45px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.32);
+    box-sizing: border-box
+}
+
+.logo {}
+
+.logo .logo-text {
+    font-size: 1.5rem;
+    color: #3E3E3E;
+    font-weight: 500
+}
+
+.buttons-container {
+    display: -webkit-box;
+    width: 350;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row
+}
+
+.button {
+    display: block;
+    position: relative;
+    width: 60px;
+    padding: 0;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    font-weight: normal;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 40px;
+    color: #59667A;
+    border: none;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+.button:hover {
+    color: #00ac6b;
+    background: #FFFFFF;
+
+}
+
+.button-login {
+    color: #59667A;
+    background: #FFFFFF;
+}
+
+.button-login:hover {
+    color: #42526B;
+}
+
+.github-icon {
+    font-size: 3rem;
+    text-align: center;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    color: #4a544d;
+    transition: all 0.35s;
+}
+
+.github-icon:hover {
+    color: #333a35;
+}
+
+.lists-container {
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    position: relative;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: center;
+    -ms-flex-pack: justify;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+}
+
+.list-container {
+    margin: 0 auto;
+    height: 550px;
+    width: 450px;
+    background-color: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+}
+
+.list-header {
+    display: block;
+    position: relative;
+    width: 100%;
+    padding: 0;
+    height: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1rem;
+    font-weight: lighter;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 58px;
+    color: #ffffff;
+    background: #EF4C08;
+    /* border: none; */
+    box-sizing: border-box;
+    border-top-right-radius: 2px;
+    border-top-left-radius: 2px;
+}
+

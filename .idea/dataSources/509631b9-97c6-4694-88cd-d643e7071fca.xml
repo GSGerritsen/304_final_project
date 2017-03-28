@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="304Project@localhost">
+  <database-model serializer="dbm" rdbms="MYSQL" format-version="4.0">
+    <root id="1"/>
+    <schema id="2" parent="1" name="304Project">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="anagrammer"/>
+    <schema id="4" parent="1" name="elephant"/>
+    <schema id="5" parent="1" name="gophr"/>
+    <schema id="6" parent="1" name="information_schema"/>
+    <schema id="7" parent="1" name="mysql"/>
+    <schema id="8" parent="1" name="performance_schema"/>
+    <schema id="9" parent="1" name="sys"/>
+    <table id="10" parent="2" name="Admin"/>
+    <table id="11" parent="2" name="Book"/>
+    <table id="12" parent="2" name="Comic"/>
+    <table id="13" parent="2" name="Creator"/>
+    <table id="14" parent="2" name="Episode"/>
+    <table id="15" parent="2" name="History"/>
+    <table id="16" parent="2" name="Media"/>
+    <table id="17" parent="2" name="Movie"/>
+    <table id="18" parent="2" name="RegularUser"/>
+    <table id="19" parent="2" name="TVShow"/>
+    <table id="20" parent="2" name="ViewLater"/>
+    <table id="21" parent="2" name="Volume"/>
+    <column id="22" parent="10" name="uid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="23" parent="10" name="username">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="24" parent="10" name="email">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <key id="25" parent="10" name="PRIMARY">
+      <ColNames>uid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="26" parent="11" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="11" name="num_pages">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="28" parent="11" name="PRIMARY">
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="29" parent="11" name="book_ibfk_1">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Media</RefTableName>
+      <RefColNames>mid</RefColNames>
+    </foreign-key>
+    <column id="30" parent="12" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="31" parent="12" name="num_pages">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+    </column>
+    <key id="32" parent="12" name="PRIMARY">
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="33" parent="12" name="comic_ibfk_1">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Media</RefTableName>
+      <RefColNames>mid</RefColNames>
+    </foreign-key>
+    <column id="34" parent="13" name="cid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="35" parent="13" name="name">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="36" parent="13" name="type">
+      <Position>3</Position>
+      <DataType>char(20)|0</DataType>
+    </column>
+    <column id="37" parent="13" name="bio">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <key id="38" parent="13" name="PRIMARY">
+      <ColNames>cid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="39" parent="14" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="40" parent="14" name="season">
+      <Position>2</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="41" parent="14" name="episode_number">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="42" parent="14" name="title">
+      <Position>4</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="43" parent="14" name="avg_rating">
+      <Position>5</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <key id="44" parent="14" name="PRIMARY">
+      <ColNames>mid
+season
+episode_number</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="45" parent="14" name="episode_ibfk_1">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>TVShow</RefTableName>
+      <RefColNames>mid</RefColNames>
+    </foreign-key>
+    <column id="46" parent="15" name="uid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="47" parent="15" name="mid">
+      <Position>2</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="48" parent="15" name="mid">
+      <ColNames>mid</ColNames>
+    </index>
+    <key id="49" parent="15" name="PRIMARY">
+      <ColNames>uid
+mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="50" parent="15" name="history_ibfk_1">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>RegularUser</RefTableName>
+      <RefColNames>uid</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="51" parent="15" name="history_ibfk_2">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Media</RefTableName>
+      <RefColNames>mid</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="52" parent="16" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="53" parent="16" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+    </column>
+    <column id="54" parent="16" name="cid">
+      <Position>3</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="55" parent="16" name="avg_rating">
+      <Position>4</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <index id="56" parent="16" name="cid">
+      <ColNames>cid</ColNames>
+    </index>
+    <key id="57" parent="16" name="PRIMARY">
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="58" parent="16" name="media_ibfk_1">
+      <ColNames>cid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Creator</RefTableName>
+      <RefColNames>cid</RefColNames>
+    </foreign-key>
+    <column id="59" parent="17" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="60" parent="17" name="length">
+      <Position>2</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <key id="61" parent="17" name="PRIMARY">
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="62" parent="17" name="movie_ibfk_1">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Media</RefTableName>
+      <RefColNames>mid</RefColNames>
+    </foreign-key>
+    <column id="63" parent="18" name="uid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+      <SequenceIdentity>1</SequenceIdentity>
+    </column>
+    <column id="64" parent="18" name="username">
+      <Position>2</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="65" parent="18" name="email">
+      <Position>3</Position>
+      <DataType>varchar(30)|0</DataType>
+    </column>
+    <column id="66" parent="18" name="ban">
+      <Position>4</Position>
+      <DataType>tinyint(1)|0</DataType>
+    </column>
+    <key id="67" parent="18" name="PRIMARY">
+      <ColNames>uid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="68" parent="19" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="69" parent="19" name="length">
+      <Position>2</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <key id="70" parent="19" name="PRIMARY">
+      <ColNames>mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="71" parent="19" name="tvshow_ibfk_1">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Media</RefTableName>
+      <RefColNames>mid</RefColNames>
+    </foreign-key>
+    <column id="72" parent="20" name="uid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="73" parent="20" name="mid">
+      <Position>2</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <index id="74" parent="20" name="mid">
+      <ColNames>mid</ColNames>
+    </index>
+    <key id="75" parent="20" name="PRIMARY">
+      <ColNames>uid
+mid</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="76" parent="20" name="viewlater_ibfk_1">
+      <ColNames>uid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>RegularUser</RefTableName>
+      <RefColNames>uid</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <foreign-key id="77" parent="20" name="viewlater_ibfk_2">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Media</RefTableName>
+      <RefColNames>mid</RefColNames>
+      <OnDelete>delete</OnDelete>
+    </foreign-key>
+    <column id="78" parent="21" name="mid">
+      <Position>1</Position>
+      <DataType>int(12)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="79" parent="21" name="title">
+      <Position>2</Position>
+      <DataType>varchar(255)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="80" parent="21" name="vol_num">
+      <Position>3</Position>
+      <DataType>int(11)|0</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="81" parent="21" name="avg_rating">
+      <Position>4</Position>
+      <DataType>float|0</DataType>
+    </column>
+    <key id="82" parent="21" name="PRIMARY">
+      <ColNames>mid
+vol_num
+title</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="83" parent="21" name="volume_ibfk_1">
+      <ColNames>mid</ColNames>
+      <RefSchemaName>304project</RefSchemaName>
+      <RefTableName>Comic</RefTableName>
+      <RefColNames>mid</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>
