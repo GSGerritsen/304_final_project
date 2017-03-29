@@ -1,5 +1,6 @@
 import Database.MediaStatements;
 import Results.Results;
+import Query.Query;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -67,90 +68,37 @@ public class SearchMedia extends HttpServlet {
         MediaStatements mediaStatements = new MediaStatements();
         if (searchPatternMatch.find()) {
             search = searchPatternMatch.group(1);
-            if (bookPatternMatch.find() && comicPatternMatch.find() && moviePatternMatch.find() && tvPatternMatch.find()) {
+            if (bookPatternMatch.find()
+                    && comicPatternMatch.find()
+                    && moviePatternMatch.find()
+                    && tvPatternMatch.find()
+                    && creatorPatternMatch.find()
+                    && mediaTitlePatternMatch.find()
+                    && maxPatternMatch.find()
+                    && minPatternMatch.find()
+                    && avgMaxPatternMatch.find()
+                    && avgMinPatternMatch.find()) {
                 // get the values of these booleans from the request
-                book  = Boolean.parseBoolean(bookPatternMatch.group(1));
-                comic = Boolean.parseBoolean(comicPatternMatch.group(1));
-                movie = Boolean.parseBoolean(moviePatternMatch.group(1));
-                tv    = Boolean.parseBoolean(tvPatternMatch.group(1));
+                book        = Boolean.parseBoolean(bookPatternMatch.group(1));
+                comic       = Boolean.parseBoolean(comicPatternMatch.group(1));
+                movie       = Boolean.parseBoolean(moviePatternMatch.group(1));
+                tv          = Boolean.parseBoolean(tvPatternMatch.group(1));
+                creator     = Boolean.parseBoolean(creatorPatternMatch.group(1));
+                mediaTitle  = Boolean.parseBoolean(mediaTitlePatternMatch.group(1));
+                max         = Boolean.parseBoolean(maxPatternMatch.group(1));
+                min         = Boolean.parseBoolean(minPatternMatch.group(1));
+                avgMax      = Boolean.parseBoolean(avgMaxPatternMatch.group(1));
+                avgMin      = Boolean.parseBoolean(avgMinPatternMatch.group(1));
 
-                if (book && comic && movie && tv) {
-                    if (creatorPatternMatch.find() && mediaTitlePatternMatch.find()) {
-                        // get the values of these booleans from the request
-                        creator = Boolean.parseBoolean(creatorPatternMatch.group(1));
-                        mediaTitle = Boolean.parseBoolean(mediaTitlePatternMatch.group(1));
-                        if (creator) {
-                            if (maxPatternMatch.find() && minPatternMatch.find() && avgMaxPatternMatch.find() && avgMinPatternMatch.find()) {
-                                max = Boolean.parseBoolean(maxPatternMatch.group(1));
-                                min = Boolean.parseBoolean(minPatternMatch.group(1));
-                                avgMax = Boolean.parseBoolean(avgMaxPatternMatch.group(1));
-                                avgMin = Boolean.parseBoolean(avgMinPatternMatch.group(1));
+                Query query = new Query(search, book, comic, movie, tv, creator, mediaTitle, max, min, avgMax, avgMin);
 
-                                if (max) {
-                                    // TODO: write findAllCategoriesByCreatorWithKeyword in the MediaStatements class
-                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "max");
-                                }
-                                if (min) {
-                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "min");
-                                }
-                                if (avgMax) {
-                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "avgMax");
-                                }
-                                if (avgMin) {
-                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "avgMin");
-                                }
 
-                                else {
-                                    // resultsList = mediaStatements.findAllCategoriesByCreatorWithKeyword(search, "none");
-                                }
 
-                            }
 
-                        }
-                        if (mediaTitle) {
-                            if (maxPatternMatch.find() && minPatternMatch.find() && avgMaxPatternMatch.find() && avgMinPatternMatch.find()) {
-                                max = Boolean.parseBoolean(maxPatternMatch.group(1));
-                                min = Boolean.parseBoolean(minPatternMatch.group(1));
-                                avgMax = Boolean.parseBoolean(avgMaxPatternMatch.group(1));
-                                avgMin = Boolean.parseBoolean(avgMinPatternMatch.group(1));
 
-                                if (max) {
-                                    // TODO: write findAllCategoriesByCreatorWithKeyword in the MediaStatements class
-                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "max");
-                                }
-                                if (min) {
-                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "min");
-                                }
-                                if (avgMax) {
-                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "avgMax");
-                                }
-                                if (avgMin) {
-                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "avgMin");
-                                }
 
-                                else {
-                                    // resultsList = mediaStatements.findAllCategoriesByTitleWithKeyword(search, "none");
-                                }
-
-                            }
-                        }
-                        else {
-                            // TODO: write findAllCategoriesWithKeyword in the MediaStatements class
-                            // resultsList = mediaStatements.findAllCategoriesWithKeyword(search);
-                        }
-                    }
-
-                // TODO: we will need to enumerate each possible combination of book & movie, or book & TV show, etc, like above.
-                    // this will be a beefy file but it's doing all the heavy lifting for search
-                }
 
             }
-        }
-
-        // No specific text, so just query based on what boxes have been checked
-        if (bookPatternMatch.find()) {
-            // TODO: replicate above once complete, just without a search keyword
-            System.out.println(bookPatternMatch.group(1));
         }
 
     }
