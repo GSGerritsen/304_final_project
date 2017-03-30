@@ -21,7 +21,7 @@ public class MediaStatements {
         // Enumerate all cases for selected categories
         if (query.getBook() && query.getComic() && query.getMovie() && query.getTv()) {
             // Projection on Creator
-            if(query.getCreator()) {
+            if (query.getCreator()) {
                 if (query.getMax()) {
                     String sql = "";
                 }
@@ -33,13 +33,12 @@ public class MediaStatements {
                 }
                 if (query.getAvgMin()) {
                     String sql = "";
-                }
-                else {
+                } else {
                     String sql = "";
                 }
             }
             // Projection on media title
-            if(query.getMediaTitle()) {
+            if (query.getMediaTitle()) {
                 if (query.getMax()) {
                     String sql = "";
                 }
@@ -51,8 +50,7 @@ public class MediaStatements {
                 }
                 if (query.getAvgMin()) {
                     String sql = "";
-                }
-                else {
+                } else {
                     String sql = "";
                 }
             }
@@ -68,14 +66,12 @@ public class MediaStatements {
             }
             if (query.getAvgMin()) {
                 String sql = "";
-            }
-            else {
+            } else {
                 String sql = "";
             }
         }
 
-
-
+        return ret;
     }
 
     public int findTitle(String title) {
@@ -89,8 +85,7 @@ public class MediaStatements {
             if (rs.next()) {
                 return rs.getInt("mid");
             }
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
         } finally {
             connHandler.closeConnection(connection);
@@ -119,3 +114,5 @@ public class MediaStatements {
     }
 
 }
+
+
