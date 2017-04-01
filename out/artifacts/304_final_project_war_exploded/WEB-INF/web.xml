@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <mime-mapping>
+        <extension>css</extension>
+        <mime-type>text/css</mime-type>
+    </mime-mapping>
+
+    <servlet>
+        <servlet-name>Home</servlet-name>
+        <jsp-file>/html/home.html</jsp-file>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>Home</servlet-name>
+        <url-pattern>/test</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>viewLater</servlet-name>
+        <jsp-file>/html/ViewLater.html</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewLater</servlet-name>
+        <url-pattern>/viewLater</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchMedia</servlet-name>
+        <servlet-class>SearchMedia</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SearchMedia</servlet-name>
+        <url-pattern>/search_media</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ViewLater</servlet-name>
+        <servlet-class>ViewLater</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ViewLater</servlet-name>
+        <url-pattern>/view_later</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveViewLater</servlet-name>
+        <servlet-class>RemoveViewLater</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RemoveViewLater</servlet-name>
+        <url-pattern>/remove_view_later</url-pattern>
+    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+
+
+</web-app>

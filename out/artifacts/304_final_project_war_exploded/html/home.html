@@ -1,0 +1,78 @@
+<html>
+<head>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <title>Home</title>
+</head>
+<body>
+<div id="lists">
+    <nav id="navbar-target" class="navbar" role="navigation">
+        <div class="navbar navbar-wrap">
+            <div class="logo">
+                <a class="logo-text" href="/">304 Project</a>
+            </div>
+            <div class="buttons-container">
+                <a class="button button-login" href="/viewLater">View Later</a>
+                <a class="button button-signup">History</a>
+                <a class="button button-signup">Stats</a>
+            </div>
+        </div>
+    </nav>
+    <div class="lists-container">
+        <div class="list-container">
+            <div class="search-header">
+                <i class="fa fa-search" class="search-icon" aria-hidden="true"></i>
+                <input type="text" v-model="search" class="search-input">
+            </div>
+            <div class="filter-header">
+                Filter media categories
+            </div>
+            <div class="filter-options">
+                <input type="checkbox" v-model="book">Books<br>
+                <input type="checkbox" v-model="comic">Comics<br>
+                <input type="checkbox" v-model="movie">Movies<br>
+                <input type="checkbox" v-model="tv">TV Shows<br>
+            </div>
+            <div class="filter-header">
+                Filter results (optional)
+            </div>
+            <div class="filter-options">
+                <input type="checkbox" v-model="mediaTitle">Media title<br>
+            </div>
+            <div class="filter-header">
+                Sort by
+            </div>
+            <div class="filter-options">
+                <input type="checkbox" v-model="max">Max rating<br>
+                <input type="checkbox" v-model="min">Min rating<br>
+            </div>
+            <div class="button-search" @click="submitForm">
+                Search
+            </div>
+        </div>
+
+        <div class="results-container">
+            <div class="results-header">
+                Results lmao
+            </div>
+            <div class="results-section">
+                <div  v-for="(m, index) in media" v-on:click="setIndex($event)">
+                    <div  class="result">
+                        <div class="result-index">{{index}}</div>
+                        <div v-if="m.category !== 'empty'" class="result-category">{{m.category}} </div>
+                        <div v-if="m.creator !== 'empty'" class="result-creator">{{m.creator}} </div>
+                        <div class="result-title">{{m.mediaTitle}} </div>
+                        <div v-if="m.rating !== 0">{{m.rating}} </div>
+                        <div @click="addToViewLater" class="add-to-view-later"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="../js/axios.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="/js/home.js"></script>
+<script src="../js/fa.js"></script>
+</html>
