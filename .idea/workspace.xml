@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="15b860ec-a2d4-4c74-88fc-90d02a4be8df" name="Default" comment="Merge https://github.com/GSGerritsen/304_final_project&#10;&#10;# Conflicts:&#10;#&#9;src/Database/MediaStatements.java&#10;" />
+    <list default="true" id="15b860ec-a2d4-4c74-88fc-90d02a4be8df" name="Default" comment="Merge https://github.com/GSGerritsen/304_final_project&#10;&#10;# Conflicts:&#10;#&#9;src/Database/MediaStatements.java&#10;">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -498,7 +500,7 @@
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="MySQL" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="settings.editor.selected.configurable" value="Errors" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="Downloaded.Files.Path.Enabled" value="false" />
@@ -1002,7 +1004,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1490606521549</updated>
-      <workItem from="1490606524207" duration="91090000" />
+      <workItem from="1490606524207" duration="91603000" />
     </task>
     <task id="LOCAL-00001" summary="Changes to home page">
       <created>1490675927289</created>
@@ -1036,7 +1038,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="91090000" />
+    <option name="totallyTimeSpent" value="91603000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="4" y="23" width="1427" height="873" extended-state="0" />
