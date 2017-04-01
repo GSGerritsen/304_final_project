@@ -19,6 +19,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>Stats</servlet-name>
+        <jsp-file>/html/statistics.html</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Stats</servlet-name>
+        <url-pattern>/statsPage</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>viewLater</servlet-name>
         <jsp-file>/html/ViewLater.html</jsp-file>
     </servlet>
@@ -57,6 +67,28 @@
         <servlet-name>RemoveViewLater</servlet-name>
         <url-pattern>/remove_view_later</url-pattern>
     </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>StatsServlet</servlet-name>
+        <servlet-class>StatsServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>StatsServlet</servlet-name>
+        <url-pattern>/stats</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>MinStats</servlet-name>
+        <servlet-class>MinStats</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>MinStats</servlet-name>
+        <url-pattern>/min</url-pattern>
+    </servlet-mapping>
+
 
     <welcome-file-list>
         <welcome-file>index.jsp</welcome-file>

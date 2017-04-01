@@ -27,7 +27,7 @@ public class MediaStatements {
             // Projection on media title
              if (query.getMediaTitle()) {
                     if (query.getMax()) {
-                        String sql = "SELECT title, id FROM (" +
+                        String sql = "SELECT title, mid FROM (" +
                                 "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
                                 " UNION " +
                                 "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
@@ -61,7 +61,7 @@ public class MediaStatements {
                         }
                     }
                     if (query.getMin()) {
-                        String sql = "SELECT title, id FROM (" +
+                        String sql = "SELECT title, mid FROM (" +
                                 "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
                                 " UNION " +
                                 "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
@@ -91,7 +91,7 @@ public class MediaStatements {
                         }
                     }
                     if(!query.getMax() && !query.getMin()) {
-                        String sql = "SELECT title, id FROM (" +
+                        String sql = "SELECT title, mid FROM (" +
                                 "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
                                 " UNION " +
                                 "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +

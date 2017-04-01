@@ -20,29 +20,34 @@
     </nav>
     <div class="lists-container">
         <div class="results-container">
+            <div class="nested-button-search" @click="queryMax">
+                Maximum average rating across media categories
+            </div>
+            <div class="nested-button-search" @click="queryMin">
+                Minimum average rating across media categories
+            </div>
+
+        </div>
+        <div class="results-container">
             <div class="results-header">
-                View Later
+                Result of Nested Aggregation Query
             </div>
             <div class="results-section">
-                <div  class="result-wrapper" v-for="(m, index) in viewLater" v-on:click="setIndex($event)">
+                <div  class="result-wrapper" v-for="(r, index) in results">
                     <div  class="result">
-                        <div class="result-index">{{index}}</div>
-                        <div v-if="m.category !== 'empty'" class="result-category">{{m.category}} </div>
-                        <div v-if="m.creator !== 'empty'" class="result-creator">{{m.creator}} </div>
-                        <div class="result-title">{{m.mediaTitle}} </div>
-                        <div v-if="m.rating !== 0">{{m.id}} </div>
-                        <div @click="removeFromViewLater" class="add-to-view-later"></div>
+                        <div class="result-creator">{{r.name}}</div>
+                        <div class="result-title">{{r.rating}}</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    </div>
+</div>
 </div>
 </body>
 <script src="../js/axios.js"></script>
 <script type="text/javascript" src="../js/vue.js"></script>
-<script type="text/javascript" src="/js/viewLater.js"></script>
+<script type="text/javascript" src="/js/stats.js"></script>
 <script src="../js/fa.js"></script>
 </html>
