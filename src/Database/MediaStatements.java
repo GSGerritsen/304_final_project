@@ -6,7 +6,9 @@ import Query.Query;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 
@@ -18,61 +20,228 @@ public class MediaStatements {
         ConnectionHandler connHandler = new ConnectionHandler();
         Connection connection = connHandler.openConnection();
 
-        // Enumerate all cases for selected categories
-        if (query.getBook() && query.getComic() && query.getMovie() && query.getTv()) {
-            // Projection on Creator
-            if (query.getCreator()) {
-                if (query.getMax()) {
-                    String sql = "";
-                }
-                if (query.getMin()) {
-                    String sql = "";
-                }
-                if (query.getAvgMax()) {
-                    String sql = "";
-                }
-                if (query.getAvgMin()) {
-                    String sql = "";
-                } else {
-                    String sql = "";
-                }
-            }
+        // User entered a keyword to search on
+        if (!query.getSearch().isEmpty()) {
+            // Enumerate all cases for selected categories
+            // All 4 categories
             // Projection on media title
-            if (query.getMediaTitle()) {
-                if (query.getMax()) {
-                    String sql = "";
+             if (query.getMediaTitle()) {
+                    if (query.getMax()) {
+                        String sql = "SELECT title, id FROM (" +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Movie' FROM Creator c, Media m, Movie mov WHERE c.cid = m.cid AND mov.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'TV Show' FROM Creator c, Media m, TVShow tv WHERE c.cid = m.cid AND tv.mid = m.mid AND c.name LIKE ?" +
+                                ")   as TEMP GROUP BY avg_rating DESC LIMIT 1";
+
+
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(sql);
+                            String keyword = "%" + query.getSearch() + "%";
+                            statement.setString(1, keyword);
+                            statement.setString(2, keyword);
+                            statement.setString(3, keyword);
+                            statement.setString(4, keyword);
+                            ResultSet rs = statement.executeQuery();
+
+                            while (rs.next()) {
+                                Results results = new Results("empty", rs.getString(1), 0, "empty", rs.getInt(2));
+                                ret.add(results);
+
+                            }
+                            System.out.println(ret.get(0).getMediaTitle());
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connHandler.closeConnection(connection);
+                        }
+                    }
+                    if (query.getMin()) {
+                        String sql = "SELECT title, id FROM (" +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Movie' FROM Creator c, Media m, Movie mov WHERE c.cid = m.cid AND mov.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'TV Show' FROM Creator c, Media m, TVShow tv WHERE c.cid = m.cid AND tv.mid = m.mid AND c.name LIKE ?" +
+                                ")   as TEMP GROUP BY avg_rating ASC LIMIT 1";
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(sql);
+                            String keyword = "%" + query.getSearch() + "%";
+                            statement.setString(1, keyword);
+                            statement.setString(2, keyword);
+                            statement.setString(3, keyword);
+                            statement.setString(4, keyword);
+                            ResultSet rs = statement.executeQuery();
+
+                            while (rs.next()) {
+                                  Results results = new Results("empty", rs.getString(1), 0, "empty", rs.getInt(2));
+                                  ret.add(results);
+                            }
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connHandler.closeConnection(connection);
+                        }
+                    }
+                    if(!query.getMax() && !query.getMin()) {
+                        String sql = "SELECT title, id FROM (" +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Movie' FROM Creator c, Media m, Movie mov WHERE c.cid = m.cid AND mov.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'TV Show' FROM Creator c, Media m, TVShow tv WHERE c.cid = m.cid AND tv.mid = m.mid AND c.name LIKE ?" +
+                                ")   as TEMP GROUP BY avg_rating";
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(sql);
+                            String keyword = "%" + query.getSearch() + "%";
+                            statement.setString(1, keyword);
+                            statement.setString(2, keyword);
+                            statement.setString(3, keyword);
+                            statement.setString(4, keyword);
+                            ResultSet rs = statement.executeQuery();
+                            while (rs.next()) {
+                                Results results = new Results("empty", rs.getString(1), 0, "empty", rs.getInt(2));
+                                ret.add(results);
+                            }
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connHandler.closeConnection(connection);
+                        }
+                    }
+                    }
+                    // No projection, get all the results
+                    else {
+                    if (query.getMax()) {
+                        String sql = "SELECT * FROM (" +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Movie' FROM Creator c, Media m, Movie mov WHERE c.cid = m.cid AND mov.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'TV Show' FROM Creator c, Media m, TVShow tv WHERE c.cid = m.cid AND tv.mid = m.mid AND c.name LIKE ?" +
+                                ") as TEMP GROUP BY avg_rating DESC LIMIT 1";
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(sql);
+                            String keyword = "%" + query.getSearch() + "%";
+                            statement.setString(1, keyword);
+                            statement.setString(2, keyword);
+                            statement.setString(3, keyword);
+                            statement.setString(4, keyword);
+
+                            ResultSet rs = statement.executeQuery();
+
+                            while (rs.next()) {
+                                Results results = new Results(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getString(5), rs.getInt(4));
+                                    ret.add(results);
+                                }
+                                System.out.println(ret.get(0).getMediaTitle());
+
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connHandler.closeConnection(connection);
+                        }
+                    }
+                    if (query.getMin()) {
+                        String sql = "SELECT * FROM (" +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Movie' FROM Creator c, Media m, Movie mov WHERE c.cid = m.cid AND mov.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'TV Show' FROM Creator c, Media m, TVShow tv WHERE c.cid = m.cid AND tv.mid = m.mid AND c.name LIKE ?" +
+                                ")   as TEMP GROUP BY avg_rating ASC LIMIT 1";
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(sql);
+                            String keyword = "%" + query.getSearch() + "%";
+                            statement.setString(1, keyword);
+                            statement.setString(2, keyword);
+                            statement.setString(3, keyword);
+                            statement.setString(4, keyword);
+                            ResultSet rs = statement.executeQuery();
+                            while (rs.next()) {
+                                Results results = new Results(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getString(5), rs.getInt(4));
+                                ret.add(results);
+                            }
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connHandler.closeConnection(connection);
+                        }
+                    }
+                    if (!query.getMax() && !query.getMin()) {
+                        String sql = "SELECT * FROM (" +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Book' FROM Creator c, Media m, Book b WHERE c.cid = m.cid AND b.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Comic' FROM Creator c, Media m, Comic com WHERE c.cid = m.cid AND com.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'Movie' FROM Creator c, Media m, Movie mov WHERE c.cid = m.cid AND mov.mid = m.mid AND c.name LIKE ?" +
+                                " UNION " +
+                                "SELECT DISTINCT c.name, m.title, m.avg_rating, m.mid, 'TV Show' FROM Creator c, Media m, TVShow tv WHERE c.cid = m.cid AND tv.mid = m.mid AND c.name LIKE ?" +
+                                ")   as TEMP GROUP BY avg_rating";
+                        try {
+                            PreparedStatement statement = connection.prepareStatement(sql);
+                            String keyword = "%" + query.getSearch() + "%";
+                            statement.setString(1, keyword);
+                            statement.setString(2, keyword);
+                            statement.setString(3, keyword);
+                            statement.setString(4, keyword);
+                            ResultSet rs = statement.executeQuery();
+                            while (rs.next()) {
+                                Results results = new Results(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getString(5), rs.getInt(4));
+                                ret.add(results);
+                            }
+                        }
+                        catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            connHandler.closeConnection(connection);
+                        }
+                    }
+                    }
                 }
-                if (query.getMin()) {
-                    String sql = "";
+
+            // Filter all results based on query
+            List<Results> filteredRet = new ArrayList<>();
+            HashMap<String, Boolean> bools = new HashMap<>();
+            if (query.getBook()) { bools.put("Book", true); }
+            if (query.getComic()) { bools.put("Comic", true); }
+            if (query.getMovie()) { bools.put("Movie", true); }
+            if (query.getTv()) { bools.put("TV Show", true); }
+
+            for (int i = 0; i < ret.size(); i++) {
+                if (bools.containsKey(ret.get(i).getCategory()) || ret.get(i).getCategory().equals("empty")) {
+                    filteredRet.add(ret.get(i));
                 }
-                if (query.getAvgMax()) {
-                    String sql = "";
-                }
-                if (query.getAvgMin()) {
-                    String sql = "";
-                } else {
-                    String sql = "";
-                }
             }
-            // No projection on creator or media title, so just check if max, min, avgMax, or avgMin were selected:
-            if (query.getMax()) {
-                String sql = "";
+
+            for (int i = 0; i < filteredRet.size(); i++) {
+                System.out.println(filteredRet.get(i).getCategory());
+                System.out.println(filteredRet.get(i).getCreator());
+                System.out.println(filteredRet.get(i).getMediaTitle());
+                System.out.println(filteredRet.get(i).getRating());
             }
-            if (query.getMin()) {
-                String sql = "";
-            }
-            if (query.getAvgMax()) {
-                String sql = "";
-            }
-            if (query.getAvgMin()) {
-                String sql = "";
-            } else {
-                String sql = "";
-            }
+            return filteredRet;
         }
 
-        return ret;
-    }
+
+
+
 
     public int findTitle(String title) {
         String sql = "SELECT mid, title FROM Media WHERE title = ?";
@@ -113,6 +282,11 @@ public class MediaStatements {
         return -1;
     }
 
-}
+    public static void main(String []args) {
+        Query query = new Query("Joss", false, false, true, true, true, false, false);
+        MediaStatements mediaStatements = new MediaStatements();
+        mediaStatements.findMedia(query);
+    }
 
+}
 

@@ -1,7 +1,7 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <title>ViewLater</title>
+    <title>Home</title>
 </head>
 <body>
 <div id="lists">
@@ -11,73 +11,37 @@
                 <a class="logo-text" href="/">304 Project</a>
             </div>
             <div class="buttons-container">
-                <a class="button button-login">Home</a>
+                <a class="button button-login">View Later</a>
                 <a class="button button-signup">History</a>
-                <a class="github-icon" target="_blank" href="https://github.com/GSGerritsen/"> <i class="fa fa-github 4x" aria-hidden="true"></i></a>
+                <a class="button button-signup">Stats</a>
             </div>
         </div>
     </nav>
-
     <div class="lists-container">
         <div class="results-container">
             <div class="results-header">
-                <h3>My View Later List</h3>
+                View Later
             </div>
-
-            <div class="search-header">
-                <i class="fa fa-search" class="search-icon" aria-hidden="true"></i>
-
-                <input type="text" v-model="search" class="search-input">
-
-                <div class="button-search" @click="submitForm">
-                    Search
-                </div>
-
-                <div>
-                    <button type="button" @click="displayOptions">More</button>
-                    <div class="list-container" style="display: none">
-                        <div class="filter-header">
-                            Filter media categories
-                        </div>
-                        <div class="filter-options">
-                            <input type="checkbox" v-model="book">Books<br>
-                            <input type="checkbox" v-model="comic">Comics<br>
-                            <input type="checkbox" v-model="movie">Movies<br>
-                            <input type="checkbox" v-model="tv">TV Shows<br>
-                        </div>
-                        <div class="filter-header">
-                            Filter results (optional)
-                        </div>
-                        <div class="filter-options">
-                            <input type="checkbox" v-model="creator">Creator<br>
-                            <input type="checkbox" v-model="mediaTitle">Media title<br>
-                        </div>
-                        <div class="filter-header">
-                            Sort by
-                        </div>
-                        <div class="filter-options">
-                            <input type="checkbox" v-model="max">Max rating<br>
-                            <input type="checkbox" v-model="min">Min rating<br>
-                            <input type="checkbox" v-model="avgMax">Max average rating<br>
-                            <input type="checkbox" v-model="avgMin">Min average rating<br>
-                        </div>
+            <div class="results-section">
+                <div  class="result-wrapper" v-for="(m, index) in viewLater" v-on:click="setIndex($event)">
+                    <div  class="result">
+                        <div class="result-index">{{index}}</div>
+                        <div v-if="m.category !== 'empty'" class="result-category">{{m.category}} </div>
+                        <div v-if="m.creator !== 'empty'" class="result-creator">{{m.creator}} </div>
+                        <div class="result-title">{{m.mediaTitle}} </div>
+                        <div v-if="m.rating !== 0">{{m.id}} </div>
+                        <div @click="removeFromViewLater" class="add-to-view-later"></div>
                     </div>
-                </div>
-            </div>
-
-
-            <div class="result">
-                <div class="options for each result" align="right">
-                    <button type="button" class="finished" @click="addToHistory">+</button>
-                    <button type="button" class="delete" @click="delFromViewLater">-</button>
                 </div>
             </div>
         </div>
     </div>
+
+    </div>
 </div>
 </body>
-<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-<script type="text/javascript" src="https://unpkg.com/vue@2.1.10/dist/vue.js"></script>
-<script type="text/javascript" src="/js/home.js"></script>
-<script src="https://use.fontawesome.com/2574aa6893.js"></script>
+<script src="../js/axios.js"></script>
+<script type="text/javascript" src="../js/vue.js"></script>
+<script type="text/javascript" src="/js/viewLater.js"></script>
+<script src="../js/fa.js"></script>
 </html>

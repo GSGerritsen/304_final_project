@@ -1,35 +1,44 @@
 package Results;
 
-/**
- * Created by gerritgerritsen on 2017-03-28.
- */
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import Query.Query;
+
 public class Results {
 
     private String creator;
-    private String category;
     private String mediaTitle;
-    private int rating;
+    private float rating;
+    private String category;
+    private int id;
 
-    public Results(String creator, String category, String mediaTitle, int rating) {
+    public Results(String creator, String mediaTitle, float rating, String category, int id) {
         this.creator = creator;
-        this.category = category;
         this.mediaTitle = mediaTitle;
         this.rating = rating;
+        this.category = category;
+        this.id = id;
     }
 
     public String getCreator() {
         return creator;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
     public String getMediaTitle() {
         return mediaTitle;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public int getId() { return id; }
+
 }

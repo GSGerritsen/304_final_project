@@ -19,6 +19,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>viewLater</servlet-name>
+        <jsp-file>/html/ViewLater.html</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>viewLater</servlet-name>
+        <url-pattern>/viewLater</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>SearchMedia</servlet-name>
         <servlet-class>SearchMedia</servlet-class>
     </servlet>
@@ -26,6 +36,26 @@
     <servlet-mapping>
         <servlet-name>SearchMedia</servlet-name>
         <url-pattern>/search_media</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>ViewLater</servlet-name>
+        <servlet-class>ViewLater</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>ViewLater</servlet-name>
+        <url-pattern>/view_later</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>RemoveViewLater</servlet-name>
+        <servlet-class>RemoveViewLater</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>RemoveViewLater</servlet-name>
+        <url-pattern>/remove_view_later</url-pattern>
     </servlet-mapping>
 
     <welcome-file-list>
